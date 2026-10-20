@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <title>Món Quà Đặc Biệt 20/10 💖 - Dành Tặng Em Yêu</title>
+    <title>Món Quà Đặc Biệt 20/10 💖 Dành Tặng Em Yêu</title>
 
     <!-- Google Fonts pastel & kute -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -315,70 +315,34 @@
         <p id="typewriter" class="text-slate-700 leading-relaxed text-xs font-medium min-h-[110px] whitespace-pre-line"></p>
     </div>
 
-    <!-- Album Kỷ Niệm Polaroid -->
-    <div class="w-full space-y-2">
-        <h3 class="text-center font-bold text-rose-700 text-sm font-handwriting flex items-center justify-center gap-1.5">
-            <span>📸</span> Album Khoảnh Khắc <span>📸</span>
+    <!-- Album 4 Ảnh Polaroid Khoảnh Khắc -->
+    <div class="w-full space-y-3">
+        <h3 class="text-center font-bold text-gray-700 text-lg flex items-center justify-center gap-2">
+            <span>📸</span> Album Khoảnh Khắc Yêu Thương
         </h3>
-        <div class="grid grid-cols-2 gap-2.5 pt-1">
-            <div class="polaroid rounded-xl -rotate-2">
-                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80" class="w-full h-28 object-cover rounded-lg" alt="Hẹn hò" />
-                <p class="text-center font-bold text-[11px] text-rose-600 font-handwriting mt-1.5">Hẹn hò ngọt ngào 💕</p>
+        <div class="grid grid-cols-2 gap-3 pt-2">
+            <!-- Ảnh 1 -->
+            <div class="polaroid rounded-xl -rotate-2 hover:rotate-0">
+                <img src="anh2.jpg" class="w-full h-32 object-cover rounded-lg" />
+                <p class="text-center font-bold text-[11px] text-pink-600 mt-2">Khoảnh khắc 1 💕</p>
             </div>
-            <div class="polaroid rounded-xl rotate-2">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" class="w-full h-28 object-cover rounded-lg" alt="Nụ cười" />
-                <p class="text-center font-bold text-[11px] text-rose-600 font-handwriting mt-1.5">Nụ cười của em ✨</p>
+            <!-- Ảnh 2 -->
+            <div class="polaroid rounded-xl rotate-2 hover:rotate-0">
+                <img src="anh3.jpg" class="w-full h-32 object-cover rounded-lg" />
+                <p class="text-center font-bold text-[11px] text-pink-600 mt-2">Khoảnh khắc 2 ✨</p>
+            </div>
+            <!-- Ảnh 3 -->
+            <div class="polaroid rounded-xl -rotate-3 hover:rotate-0">
+                <img src="anh4.jpg" class="w-full h-32 object-cover rounded-lg" />
+                <p class="text-center font-bold text-[11px] text-pink-600 mt-2">Khoảnh khắc 3 🌸</p>
+            </div>
+            <!-- Ảnh 4 -->
+            <div class="polaroid rounded-xl rotate-3 hover:rotate-0">
+                <img src="anh5.jpg" class="w-full h-32 object-cover rounded-lg" />
+                <p class="text-center font-bold text-[11px] text-pink-600 mt-2">Khoảnh khắc 4 💖</p>
             </div>
         </div>
     </div>
-
-    <!-- Thẻ Voucher Đổi Quà 20/10 -->
-    <div class="w-full space-y-2 pt-1">
-        <h3 class="text-center font-bold text-rose-700 text-sm font-handwriting flex items-center justify-center gap-1.5">
-            <span>🎟️</span> Voucher Đổi Quà 20/10 <span>🎟️</span>
-        </h3>
-        <div class="space-y-2">
-            <div class="glass-card p-2.5 rounded-2xl flex items-center justify-between border border-pink-200 shadow-sm">
-                <div class="flex items-center gap-2.5">
-                    <span class="text-xl">🍲</span>
-                    <div>
-                        <p class="font-extrabold text-xs text-slate-800">Voucher Đi Ăn Đồ Hàn</p>
-                        <p class="text-[9px] text-slate-500">Miễn phí 1 bữa Tokbokki/Thịt nướng!</p>
-                    </div>
-                </div>
-                <button onclick="claimVoucher('Đi Ăn Đồ Hàn')" class="px-2.5 py-1 bg-rose-500 text-white rounded-xl text-[11px] font-extrabold shadow active:scale-95 transition">
-                    Đổi ngay ✨
-                </button>
-            </div>
-
-            <div class="glass-card p-2.5 rounded-2xl flex items-center justify-between border border-pink-200 shadow-sm">
-                <div class="flex items-center gap-2.5">
-                    <span class="text-xl">🎬</span>
-                    <div>
-                        <p class="font-extrabold text-xs text-slate-800">Voucher Xem Phim Rạp</p>
-                        <p class="text-[9px] text-slate-500">Bao gồm Vé + Bắp ngọt + Nước uống!</p>
-                    </div>
-                </div>
-                <button onclick="claimVoucher('Xem Phim Rạp')" class="px-2.5 py-1 bg-rose-500 text-white rounded-xl text-[11px] font-extrabold shadow active:scale-95 transition">
-                    Đổi ngay ✨
-                </button>
-            </div>
-
-            <div class="glass-card p-2.5 rounded-2xl flex items-center justify-between border border-pink-200 shadow-sm">
-                <div class="flex items-center gap-2.5">
-                    <span class="text-xl">🫂</span>
-                    <div>
-                        <p class="font-extrabold text-xs text-slate-800">Voucher 100 Cái Ôm</p>
-                        <p class="text-[9px] text-slate-500">Ấm áp & xoa đầu bất cứ lúc nào em muốn!</p>
-                    </div>
-                </div>
-                <button onclick="claimVoucher('100 Cái Ôm')" class="px-2.5 py-1 bg-rose-500 text-white rounded-xl text-[11px] font-extrabold shadow active:scale-95 transition">
-                    Đổi ngay ✨
-                </button>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <!-- JAVASCRIPT LOGIC MOBILE FIRST -->
@@ -386,15 +350,23 @@
     /* ==========================================
        1. CẤU HÌNH BỨC ẢNH & THỜI GIAN
     ========================================== */
-    const COUPLE_IMAGE = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80';
+    const COUPLE_IMAGE = 'anh1.jpg';
     const LOVE_START_DATE = new Date('2025-07-03T00:00:00'); // Mốc 03/07/2025
 
-    const PRAISE_TEXTS = [
-        "Em giỏi quá nè! 💕",
-        "Siêu thế em ơi~ 🌸",
-        "Chuẩn luôn, em giỏi thật đó! ✨",
-        "Đúng rồi nè, xuất sắc em ơi! 💖",
-        "Sắp xong rồi, em giỏi lắm nè! 🎉"
+    // Danh sách lời khen chuẩn theo đúng từng mảnh ghép thứ 1 đến 12
+    const PRAISE_BY_PIECE = [
+        "e giỏi quá nè",
+        "cố lên em bé iu ơi",
+        "cố lên iem 25% rùi",
+        "em siêu quá đi",
+        "kinhhh",
+        "hoàn thành 1 nửa chặng đường rùi bé ơi cố lên",
+        "tiếp tục phát huyy",
+        "tiến lên em ơi",
+        "sắp được rồi",
+        "wowww",
+        "còn chút nữa thôi",
+        "wao e giỏi quá hoàn thành rùi"
     ];
 
     const ROWS = 3;
@@ -563,7 +535,6 @@
         img.src = COUPLE_IMAGE;
 
         img.onload = () => {
-            // TÍNH KÍCH THƯỚC Ô VỪA KHẶT MÀN HÌNH ĐIỆN THOẠI (360px - 430px)
             const screenW = Math.min(window.innerWidth - 32, 380);
             const cellW = Math.floor((screenW - 16) / COLS);
             const cellH = cellW; // Ô vuông
@@ -661,7 +632,6 @@
             const pos = getTouchPos(e);
             const rect = piece.getBoundingClientRect();
 
-            // TÍNH OFFSET CHUẨN ĐỂ MẢNH GHÉP KHÔNG BỊ NHẢY KHI CHẠM VÀO
             touchOffsetX = pos.x - rect.left;
             touchOffsetY = pos.y - rect.top;
 
@@ -670,7 +640,6 @@
             piece.style.top = `${pos.y - touchOffsetY}px`;
             document.body.appendChild(piece);
 
-            // HIỆN MŨI TÊN CHỈ DẪN VỚI TỌA ĐỘ VIEWPORT CHUẨN
             const targetIndex = piece.dataset.index;
             activeTargetSlot = slots[targetIndex];
 
@@ -698,7 +667,6 @@
 
             const pos = getTouchPos(e);
 
-            // Cập nhật vị trí mảnh ghép di chuyển mượt theo ngón tay
             piece.style.left = `${pos.x - touchOffsetX}px`;
             piece.style.top = `${pos.y - touchOffsetY}px`;
 
@@ -729,7 +697,6 @@
             const slotCenterY = slotRect.top + slotRect.height / 2;
             const dist = Math.hypot(pieceCenterX - slotCenterX, pieceCenterY - slotCenterY);
 
-            // KHOẢNG CÁCH CHẤP NHẬN HÍT KHỚP TRÊN MOBILE
             if (dist < 48) {
                 // THẢ ĐÚNG VÀO Ô!
                 piece.classList.add('snapped');
@@ -740,9 +707,11 @@
                 targetSlot.appendChild(piece);
 
                 playSound('success');
-                showPraiseBubble(PRAISE_TEXTS[Math.floor(Math.random() * PRAISE_TEXTS.length)], true);
 
+                // TĂNG TIẾN ĐỘ & HIỂN THỊ CÂU KHEN THEO ĐÚNG THỨ TỰ TỪ 1 ĐẾN 12
                 piecesPlaced++;
+                showPraiseBubble(PRAISE_BY_PIECE[piecesPlaced - 1], true);
+
                 document.getElementById('counterText').innerText = `Đã ghép: ${piecesPlaced} / ${TOTAL_PIECES} mảnh 💖`;
 
                 if (piecesPlaced === TOTAL_PIECES) {
@@ -785,7 +754,7 @@
 
         setTimeout(() => {
             bubble.classList.add('hidden');
-        }, 2000);
+        }, 2200);
     }
 
     function completePuzzle() {
@@ -804,11 +773,11 @@
 
             startLoveTimer();
             startTypewriter();
-        }, 1000);
+        }, 1200);
     }
 
     /* ==========================================
-       6. MÀN 3: TÌNH YÊU & CÁC THẺ QUÀ TẶNG
+       6. MÀN 3: TÌNH YÊU & THƯ TÌNH
     ========================================== */
     function startLoveTimer() {
         function updateTimer() {
@@ -831,7 +800,7 @@
         setInterval(updateTimer, 1000);
     }
 
-    const letterText = `Gửi em yêu của anh,\nNhân ngày 20/10, anh chúc công chúa nhỏ của anh luôn xinh đẹp, rạng rỡ và tràn ngập niềm vui. Cảm ơn em đã xuất hiện và làm cho mỗi ngày của anh trở nên thật ý nghĩa. Anh hứa sẽ luôn ở bên, lắng nghe và yêu thương em nhiều hơn mỗi ngày. Yêu em rất nhiều! 💖✨`;
+    const letterText = `Gửi em yêu của anh,\nNhân ngày 20/10, anh chúc công chúa nhỏ của anh luôn xinh đẹp, rạng rỡ và tràn ngập niềm vui. Cảm ơn em đã xuất hiện và làm cho mỗi ngày của anh trở nên thật ý nghĩa.Anh xin lỗi em vì nhiều lúc anh làm em buồn em giận hay em khó chịu. Anh mong em rộng lượng tha thứ, cho anh cơ hội sửa lỗi với em. Mong ngày tháng sau này được chăm sóc và yêu thương em nhiều hơn Yêu em rất nhiều! 💖✨ `;
 
     function startTypewriter() {
         const el = document.getElementById('typewriter');
@@ -845,16 +814,6 @@
             }
         }
         type();
-    }
-
-    function claimVoucher(name) {
-        playSound('success');
-        confetti({
-            particleCount: 60,
-            spread: 60,
-            origin: { y: 0.8 }
-        });
-        alert(`🎉 Đã đổi thành công voucher [${name}]!\n\nAnh hứa sẽ thực hiện ngay quà tặng này cho em nhé! 🥰💖`);
     }
 
     function createPetals() {
