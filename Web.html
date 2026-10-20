@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Món Quà Đặc Biệt 20/10 💖 - Dành Tặng Em Yêu</title>
+
+    <!-- Google Fonts pastel & kute -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mali:ital,wght@0,500;0,600;0,700;1,600&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* CSS Reset & Vô hiệu hóa hành vi cuộn/kéo kéo lại trang trên Mobile */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overscroll-behavior: none; /* Khóa pull-to-refresh trên mobile */
+            font-family: 'Mali', 'Nunito', cursive, sans-serif;
+            background: linear-gradient(165deg, #fff0f5 0%, #ffe4e1 35%, #ffd1dc 70%, #f472b6 100%);
+            background-attachment: fixed;
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Thẻ Glassmorphism Tối Ưu Cho Màn Hình Dọc Điện Thoại */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 12px 32px rgba(244, 114, 182, 0.22);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(244, 114, 182, 0.35);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.12);
+        }
+
+        /* Thiệp 3D đung đưa mobile */
+        .envelope-box {
+            perspective: 1000px;
+        }
+        .envelope {
+            width: 260px;
+            height: 180px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.35);
+            animation: floatEnvelope 3.2s ease-in-out infinite;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes floatEnvelope {
+            0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+            50% { transform: translateY(-10px) rotate(1.5deg); }
+        }
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 130px solid transparent;
+            border-right: 130px solid transparent;
+            border-top: 100px solid #ff758c;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+            z-index: 3;
+        }
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        /* Khung chứa Mũi tên chỉ dẫn định vị tuyệt đối chuẩn Mobile Viewport */
+        #guideArrowBox {
+            position: fixed;
+            transform: translate(-50%, -100%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.15s ease;
+        }
+
+        .arrow-pointer {
+            animation: bounceArrowMobile 0.75s ease-in-out infinite alternate;
+            filter: drop-shadow(0 4px 8px rgba(244, 63, 94, 0.7));
+        }
+        @keyframes bounceArrowMobile {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-6px); }
+        }
+
+        /* Toast thông báo Khen/Mặt mếu */
+        .praise-toast {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.7) translateY(8px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        /* Phong cách Polaroid cho Mobile */
+        .polaroid {
+            background: #ffffff;
+            padding: 8px 8px 20px 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.25s ease;
+        }
+        .polaroid:active {
+            transform: scale(1.03) rotate(0deg) !important;
+            z-index: 20;
+        }
+
+        /* Hiệu ứng cánh hoa rơi */
+        .petal {
+            position: fixed;
+            background: radial-gradient(circle, #ffb6c1, #ff69b4);
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.8;
+            animation: fall 7s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Mảnh ghép Canvas Jigsaw chuẩn touch */
+        .jigsaw-piece {
+            position: absolute;
+            cursor: grab;
+            touch-action: none; /* Khóa chạm kéo trình duyệt */
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.22));
+            transition: transform 0.12s ease, filter 0.12s ease;
+            z-index: 30;
+            will-change: transform, left, top;
+        }
+        .jigsaw-piece.dragging {
+            cursor: grabbing;
+            transform: scale(1.1) rotate(0deg) !important;
+            filter: drop-shadow(0 12px 24px rgba(244, 63, 94, 0.6));
+            z-index: 1000 !important;
+        }
+        .jigsaw-piece.snapped {
+            cursor: default;
+            pointer-events: none;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+            z-index: 10 !important;
+        }
+
+        /* Thắp sáng ô đích trên mobile */
+        .slot-highlight {
+            border-color: #f43f5e !important;
+            background-color: rgba(251, 207, 232, 0.85) !important;
+            box-shadow: 0 0 16px rgba(244, 63, 94, 0.75) !important;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between min-h-screen px-3 py-4 relative antialiased">
+
+<!-- Background Cánh Hoa Rơi -->
+<div id="petalContainer" class="fixed inset-0 pointer-events-none z-0"></div>
+
+<!-- MŨI TÊN CHỈ DẪN MOBILE (Định vị Viewport Chuẩn 100%) -->
+<div id="guideArrowBox" class="hidden flex flex-col items-center">
+    <div class="bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-2xl border border-white/90 whitespace-nowrap mb-1">
+        ở đây nè em... 👇✨
+    </div>
+    <svg class="arrow-pointer w-6 h-6 text-rose-500 fill-current" viewBox="0 0 24 24">
+        <path d="M12 21l-12-18h24z"/>
+    </svg>
+</div>
+
+<!-- Nút Bật/Tắt Nhạc Nền Mobile -->
+<button id="musicToggle" aria-label="Toggle Music" class="fixed top-3 right-3 z-50 bg-white/90 backdrop-blur-md p-2.5 rounded-full shadow-lg text-lg hover:scale-105 active:scale-95 transition border border-pink-200 text-pink-600">
+    🎵
+</button>
+
+<!-- ==========================================
+     MÀN 1: THIỆP GẤP 3D MOBILE
+========================================== -->
+<div id="stage1" class="my-auto flex flex-col items-center justify-center text-center z-10 space-y-6 w-full max-w-sm">
+    <div class="space-y-2">
+      <span class="inline-block px-3.5 py-1 bg-white/90 text-rose-600 rounded-full text-[11px] font-extrabold tracking-wider uppercase shadow-sm border border-pink-200">
+        ✨ 20/10 - Ngày Của Công Chúa ✨
+      </span>
+        <h1 class="text-3xl font-bold text-rose-600 drop-shadow-sm font-handwriting leading-tight">
+            Có Một Món Quà Đặc Biệt Dành Cho Em! 💕
+        </h1>
+        <p class="text-gray-600 text-xs px-2">Chạm nhẹ vào chiếc thiệp đáng yêu bên dưới để mở nhé~</p>
+    </div>
+
+    <div class="envelope-box py-2">
+        <div id="envelope" class="envelope flex items-center justify-center">
+            <div class="envelope-flap"></div>
+            <div class="z-10 text-white font-bold text-base flex flex-col items-center gap-1">
+                <span class="text-3xl">💌</span>
+                <span class="font-extrabold tracking-wide text-xs">Chạm để mở thiệp</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     MÀN 2: GAME XẾP HÌNH JIGSAW MOBILE FIRST
+========================================== -->
+<div id="stage2" class="hidden flex-col items-center justify-between w-full max-w-sm my-auto z-10 py-1 relative min-h-[85vh]">
+
+    <!-- Tiêu đề & Đếm tiến độ -->
+    <div class="text-center w-full space-y-1">
+        <div class="inline-flex items-center gap-1.5 glass-pill px-4 py-1 rounded-full shadow-sm">
+            <span class="text-base">🧩</span>
+            <span id="counterText" class="font-extrabold text-rose-600 text-xs">Đã ghép: 0 / 12 mảnh 💖</span>
+        </div>
+        <p class="text-[11px] text-rose-700 font-semibold bg-white/80 px-3 py-0.5 rounded-full shadow-sm border border-pink-200/80 inline-block">
+            Kéo mảnh ghép phía dưới thả vào khung nhé!
+        </p>
+    </div>
+
+    <!-- Khung Bong Bóng Phản Hồi (Khen ngợi / Mặt mếu) -->
+    <div id="feedbackBox" class="h-8 flex items-center justify-center my-1 w-full">
+        <div id="feedbackBubble" class="hidden praise-toast px-3.5 py-1 rounded-full text-xs font-extrabold shadow-md border text-center max-w-[90%]"></div>
+    </div>
+
+    <!-- Khung Bảng Jigsaw 3x4 (Tự Động Fit Màn Hình Điện Thoại) -->
+    <div class="relative w-full flex flex-col items-center justify-center">
+        <div id="puzzleBoard" class="relative bg-white/85 backdrop-blur-md p-1.5 rounded-2xl shadow-xl border-2 border-pink-300 grid grid-cols-4 gap-0">
+            <!-- 12 Ô Đích Render tự động -->
+        </div>
+    </div>
+
+    <!-- Khay Chứa Mảnh Ghép Rải Rác Ở Phía Dưới Tầm Tay Vuốt -->
+    <div class="w-full mt-2">
+        <div class="text-[10px] font-extrabold text-rose-500 uppercase tracking-wider mb-1 text-center">Khay Mảnh Ghép ✨</div>
+        <div id="piecesContainer" class="relative w-full h-44 bg-white/60 backdrop-blur-md rounded-2xl border border-pink-200/90 p-1.5 overflow-hidden shadow-inner">
+            <!-- 12 Mảnh ghép Canvas Render tự động -->
+        </div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     MÀN 3: TRẠM TÌNH YÊU & CÁC THẺ QUÀ TẶNG
+========================================== -->
+<div id="stage3" class="hidden flex-col items-center justify-start w-full max-w-sm z-10 space-y-4 my-2 pb-12">
+
+    <!-- Header Chúc Mừng -->
+    <div class="text-center space-y-1">
+      <span class="inline-block px-3.5 py-0.5 bg-rose-100 text-rose-600 rounded-full text-[10px] font-extrabold tracking-widest uppercase">
+        Happy Vietnamese Women's Day 🌸
+      </span>
+        <h2 class="text-3xl font-bold text-rose-600 font-handwriting leading-tight">
+            Chúc Em 20/10 Thật Hạnh Phúc! 💕
+        </h2>
+    </div>
+
+    <!-- Bức Ảnh Đôi Hoàn Chỉnh -->
+    <div class="glass-card p-2.5 rounded-3xl text-center shadow-xl border border-pink-300 w-full">
+        <div id="completedPhotoView" class="w-full h-60 rounded-2xl overflow-hidden shadow-inner bg-cover bg-center border border-white"></div>
+        <p class="mt-2 text-rose-600 font-bold text-xs">Bức ảnh kỷ niệm trọn vẹn của tụi mình ✨</p>
+    </div>
+
+    <!-- Đồng Hồ Đếm Ngày Yêu (Tính từ mốc 03/07/2025) -->
+    <div class="glass-card w-full p-3.5 rounded-3xl text-center border border-pink-200">
+        <p class="text-[11px] font-extrabold text-pink-500 uppercase tracking-wider mb-2">💖 Tụi mình đã bên nhau 💖</p>
+        <div class="grid grid-cols-4 gap-1.5">
+            <div class="bg-rose-500 text-white p-1.5 rounded-xl shadow">
+                <span id="days" class="text-lg font-black">0</span>
+                <p class="text-[8px] uppercase font-bold opacity-90">NGÀY</p>
+            </div>
+            <div class="bg-pink-400 text-white p-1.5 rounded-xl shadow">
+                <span id="hours" class="text-lg font-black">0</span>
+                <p class="text-[8px] uppercase font-bold opacity-90">GIỜ</p>
+            </div>
+            <div class="bg-rose-400 text-white p-1.5 rounded-xl shadow">
+                <span id="minutes" class="text-lg font-black">0</span>
+                <p class="text-[8px] uppercase font-bold opacity-90">PHÚT</p>
+            </div>
+            <div class="bg-pink-500 text-white p-1.5 rounded-xl shadow">
+                <span id="seconds" class="text-lg font-black">0</span>
+                <p class="text-[8px] uppercase font-bold opacity-90">GIÂY</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thư Tình Gõ Máy -->
+    <div class="glass-card w-full p-4 rounded-3xl space-y-2 relative overflow-hidden border border-pink-200">
+        <div class="flex items-center gap-2 border-b border-pink-200/80 pb-2">
+            <span class="text-xl">✍️</span>
+            <h3 class="font-bold text-rose-700 text-sm font-handwriting">Gửi công chúa của anh...</h3>
+        </div>
+        <p id="typewriter" class="text-slate-700 leading-relaxed text-xs font-medium min-h-[110px] whitespace-pre-line"></p>
+    </div>
+
+    <!-- Album Kỷ Niệm Polaroid -->
+    <div class="w-full space-y-2">
+        <h3 class="text-center font-bold text-rose-700 text-sm font-handwriting flex items-center justify-center gap-1.5">
+            <span>📸</span> Album Khoảnh Khắc <span>📸</span>
+        </h3>
+        <div class="grid grid-cols-2 gap-2.5 pt-1">
+            <div class="polaroid rounded-xl -rotate-2">
+                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80" class="w-full h-28 object-cover rounded-lg" alt="Hẹn hò" />
+                <p class="text-center font-bold text-[11px] text-rose-600 font-handwriting mt-1.5">Hẹn hò ngọt ngào 💕</p>
+            </div>
+            <div class="polaroid rounded-xl rotate-2">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" class="w-full h-28 object-cover rounded-lg" alt="Nụ cười" />
+                <p class="text-center font-bold text-[11px] text-rose-600 font-handwriting mt-1.5">Nụ cười của em ✨</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thẻ Voucher Đổi Quà 20/10 -->
+    <div class="w-full space-y-2 pt-1">
+        <h3 class="text-center font-bold text-rose-700 text-sm font-handwriting flex items-center justify-center gap-1.5">
+            <span>🎟️</span> Voucher Đổi Quà 20/10 <span>🎟️</span>
+        </h3>
+        <div class="space-y-2">
+            <div class="glass-card p-2.5 rounded-2xl flex items-center justify-between border border-pink-200 shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-xl">🍲</span>
+                    <div>
+                        <p class="font-extrabold text-xs text-slate-800">Voucher Đi Ăn Đồ Hàn</p>
+                        <p class="text-[9px] text-slate-500">Miễn phí 1 bữa Tokbokki/Thịt nướng!</p>
+                    </div>
+                </div>
+                <button onclick="claimVoucher('Đi Ăn Đồ Hàn')" class="px-2.5 py-1 bg-rose-500 text-white rounded-xl text-[11px] font-extrabold shadow active:scale-95 transition">
+                    Đổi ngay ✨
+                </button>
+            </div>
+
+            <div class="glass-card p-2.5 rounded-2xl flex items-center justify-between border border-pink-200 shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-xl">🎬</span>
+                    <div>
+                        <p class="font-extrabold text-xs text-slate-800">Voucher Xem Phim Rạp</p>
+                        <p class="text-[9px] text-slate-500">Bao gồm Vé + Bắp ngọt + Nước uống!</p>
+                    </div>
+                </div>
+                <button onclick="claimVoucher('Xem Phim Rạp')" class="px-2.5 py-1 bg-rose-500 text-white rounded-xl text-[11px] font-extrabold shadow active:scale-95 transition">
+                    Đổi ngay ✨
+                </button>
+            </div>
+
+            <div class="glass-card p-2.5 rounded-2xl flex items-center justify-between border border-pink-200 shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-xl">🫂</span>
+                    <div>
+                        <p class="font-extrabold text-xs text-slate-800">Voucher 100 Cái Ôm</p>
+                        <p class="text-[9px] text-slate-500">Ấm áp & xoa đầu bất cứ lúc nào em muốn!</p>
+                    </div>
+                </div>
+                <button onclick="claimVoucher('100 Cái Ôm')" class="px-2.5 py-1 bg-rose-500 text-white rounded-xl text-[11px] font-extrabold shadow active:scale-95 transition">
+                    Đổi ngay ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT LOGIC MOBILE FIRST -->
+<script>
+    /* ==========================================
+       1. CẤU HÌNH BỨC ẢNH & THỜI GIAN
+    ========================================== */
+    const COUPLE_IMAGE = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80';
+    const LOVE_START_DATE = new Date('2025-07-03T00:00:00'); // Mốc 03/07/2025
+
+    const PRAISE_TEXTS = [
+        "Em giỏi quá nè! 💕",
+        "Siêu thế em ơi~ 🌸",
+        "Chuẩn luôn, em giỏi thật đó! ✨",
+        "Đúng rồi nè, xuất sắc em ơi! 💖",
+        "Sắp xong rồi, em giỏi lắm nè! 🎉"
+    ];
+
+    const ROWS = 3;
+    const COLS = 4;
+    const TOTAL_PIECES = ROWS * COLS;
+    let piecesPlaced = 0;
+    let jigsawEdges = { v: [], h: [] };
+
+    /* ==========================================
+       2. AUDIO SYNTHESIZER
+    ========================================== */
+    const AudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playSound(type) {
+        try {
+            if (AudioCtx.state === 'suspended') AudioCtx.resume();
+            const osc = AudioCtx.createOscillator();
+            const gain = AudioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(AudioCtx.destination);
+
+            if (type === 'pop') {
+                osc.frequency.setValueAtTime(420, AudioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(840, AudioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.2, AudioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, AudioCtx.currentTime + 0.08);
+                osc.start();
+                osc.stop(AudioCtx.currentTime + 0.08);
+            } else if (type === 'success') {
+                osc.frequency.setValueAtTime(523.25, AudioCtx.currentTime);
+                osc.frequency.setValueAtTime(659.25, AudioCtx.currentTime + 0.08);
+                osc.frequency.setValueAtTime(783.99, AudioCtx.currentTime + 0.16);
+                gain.gain.setValueAtTime(0.25, AudioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, AudioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(AudioCtx.currentTime + 0.3);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, AudioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(140, AudioCtx.currentTime + 0.18);
+                gain.gain.setValueAtTime(0.18, AudioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, AudioCtx.currentTime + 0.18);
+                osc.start();
+                osc.stop(AudioCtx.currentTime + 0.18);
+            }
+        } catch(e) {}
+    }
+
+    /* ==========================================
+       3. MÀN 1: MỞ THIỆP
+    ========================================== */
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', () => {
+        playSound('pop');
+        envelope.classList.add('open');
+        setTimeout(() => {
+            document.getElementById('stage1').classList.add('hidden');
+            document.getElementById('stage2').classList.remove('hidden');
+            document.getElementById('stage2').classList.add('flex');
+            initJigsawPuzzle();
+        }, 600);
+    });
+
+    /* ==========================================
+       4. GAME XẾP HÌNH JIGSAW MOBILE FIRST
+    ========================================== */
+    function generateJigsawEdges() {
+        for (let r = 0; r < ROWS; r++) {
+            jigsawEdges.v[r] = [];
+            for (let c = 0; c < COLS - 1; c++) {
+                jigsawEdges.v[r][c] = Math.random() < 0.5 ? 1 : -1;
+            }
+        }
+        for (let r = 0; r < ROWS - 1; r++) {
+            jigsawEdges.h[r] = [];
+            for (let c = 0; c < COLS; c++) {
+                jigsawEdges.h[r][c] = Math.random() < 0.5 ? 1 : -1;
+            }
+        }
+    }
+
+    function drawJigsawEdgePath(ctx, x1, y1, x2, y2, tabDir) {
+        if (tabDir === 0) {
+            ctx.lineTo(x2, y2);
+            return;
+        }
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const len = Math.hypot(dx, dy);
+        const ux = dx / len;
+        const uy = dy / len;
+        const px = -uy * tabDir;
+        const py = ux * tabDir;
+
+        const p1 = { x: x1 + ux * 0.35 * len, y: y1 + uy * 0.35 * len };
+        const p2 = { x: p1.x + px * 0.18 * len, y: p1.y + py * 0.18 * len };
+        const p3 = { x: x1 + ux * 0.5 * len + px * 0.22 * len, y: y1 + uy * 0.5 * len + py * 0.22 * len };
+        const p4 = { x: x1 + ux * 0.65 * len + px * 0.18 * len, y: y1 + uy * 0.65 * len + py * 0.18 * len };
+        const p5 = { x: x1 + ux * 0.65 * len, y: y1 + uy * 0.65 * len };
+
+        ctx.lineTo(p1.x, p1.y);
+        ctx.bezierCurveTo(p2.x - ux * 0.05 * len, p2.y - uy * 0.05 * len, p3.x - ux * 0.12 * len, p3.y - uy * 0.12 * len, p3.x, p3.y);
+        ctx.bezierCurveTo(p3.x + ux * 0.12 * len, p3.y + uy * 0.12 * len, p4.x + ux * 0.05 * len, p4.y + uy * 0.05 * len, p5.x, p5.y);
+        ctx.lineTo(x2, y2);
+    }
+
+    function createPieceCanvas(img, r, c, cellW, cellH) {
+        const margin = Math.round(Math.max(cellW, cellH) * 0.28);
+        const canvas = document.createElement('canvas');
+        canvas.width = cellW + 2 * margin;
+        canvas.height = cellH + 2 * margin;
+        const ctx = canvas.getContext('2d');
+
+        const edges = {
+            top: r === 0 ? 0 : -jigsawEdges.h[r - 1][c],
+            right: c === COLS - 1 ? 0 : jigsawEdges.v[r][c],
+            bottom: r === ROWS - 1 ? 0 : jigsawEdges.h[r][c],
+            left: c === 0 ? 0 : -jigsawEdges.v[r][c - 1]
+        };
+
+        const x0 = margin, y0 = margin;
+        const x1 = margin + cellW, y1 = margin + cellH;
+
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        drawJigsawEdgePath(ctx, x0, y0, x1, y0, edges.top);
+        drawJigsawEdgePath(ctx, x1, y0, x1, y1, edges.right);
+        drawJigsawEdgePath(ctx, x1, y1, x0, y1, edges.bottom);
+        drawJigsawEdgePath(ctx, x0, y1, x0, y0, edges.left);
+        ctx.closePath();
+
+        ctx.save();
+        ctx.clip();
+
+        const scaleX = img.width / (COLS * cellW);
+        const scaleY = img.height / (ROWS * cellH);
+
+        const sx = (c * cellW - margin) * scaleX;
+        const sy = (r * cellH - margin) * scaleY;
+        const sw = (cellW + 2 * margin) * scaleX;
+        const sh = (cellH + 2 * margin) * scaleY;
+
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+        ctx.restore();
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.strokeStyle = 'rgba(244, 114, 182, 0.5)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        return { canvas, margin };
+    }
+
+    function initJigsawPuzzle() {
+        generateJigsawEdges();
+        const board = document.getElementById('puzzleBoard');
+        const container = document.getElementById('piecesContainer');
+
+        board.innerHTML = '';
+        container.innerHTML = '';
+
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.src = COUPLE_IMAGE;
+
+        img.onload = () => {
+            // TÍNH KÍCH THƯỚC Ô VỪA KHẶT MÀN HÌNH ĐIỆN THOẠI (360px - 430px)
+            const screenW = Math.min(window.innerWidth - 32, 380);
+            const cellW = Math.floor((screenW - 16) / COLS);
+            const cellH = cellW; // Ô vuông
+            const margin = Math.round(cellW * 0.28);
+
+            board.style.width = `${cellW * COLS + 12}px`;
+
+            const slots = [];
+
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    const index = r * COLS + c;
+                    const slot = document.createElement('div');
+                    slot.id = `slot-${index}`;
+                    slot.className = 'relative border border-dashed border-pink-300/80 bg-pink-50/50 rounded-lg flex items-center justify-center transition-all duration-150';
+                    slot.style.width = `${cellW}px`;
+                    slot.style.height = `${cellH}px`;
+                    slot.dataset.r = r;
+                    slot.dataset.c = c;
+                    slot.dataset.index = index;
+
+                    slot.innerHTML = `<span class="text-[9px] text-pink-300 font-extrabold pointer-events-none opacity-50">${index + 1}</span>`;
+                    board.appendChild(slot);
+                    slots.push(slot);
+                }
+            }
+
+            const pieceElements = [];
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    const index = r * COLS + c;
+                    const { canvas } = createPieceCanvas(img, r, c, cellW, cellH);
+
+                    const piece = document.createElement('div');
+                    piece.id = `piece-${index}`;
+                    piece.className = 'jigsaw-piece';
+                    piece.dataset.r = r;
+                    piece.dataset.c = c;
+                    piece.dataset.index = index;
+                    piece.dataset.margin = margin;
+                    piece.style.width = `${canvas.width}px`;
+                    piece.style.height = `${canvas.height}px`;
+
+                    piece.appendChild(canvas);
+
+                    const randomRot = (Math.random() - 0.5) * 16;
+                    piece.dataset.rotation = randomRot;
+                    piece.style.transform = `rotate(${randomRot}deg)`;
+
+                    pieceElements.push(piece);
+                }
+            }
+
+            pieceElements.sort(() => Math.random() - 0.5);
+
+            pieceElements.forEach((piece) => {
+                container.appendChild(piece);
+
+                const maxLeft = Math.max(0, container.clientWidth - cellW - margin);
+                const maxTop = Math.max(0, container.clientHeight - cellH - margin);
+                const randomLeft = Math.random() * maxLeft;
+                const randomTop = Math.random() * maxTop;
+
+                piece.style.left = `${randomLeft}px`;
+                piece.style.top = `${randomTop}px`;
+
+                makeDraggableMobile(piece, slots, margin);
+            });
+        };
+    }
+
+    /* ==========================================
+       5. THUẬT TOÁN KÉO THẢ CHUẨN TỌA ĐỘ TOUCH MOBILE
+    ========================================== */
+    function makeDraggableMobile(piece, slots, margin) {
+        let isDragging = false;
+        let touchOffsetX = 0;
+        let touchOffsetY = 0;
+        let activeTargetSlot = null;
+        const guideArrow = document.getElementById('guideArrowBox');
+
+        function getTouchPos(e) {
+            if (e.touches && e.touches.length > 0) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        function onStart(e) {
+            if (piece.classList.contains('snapped')) return;
+            isDragging = true;
+            piece.classList.add('dragging');
+            playSound('pop');
+
+            const pos = getTouchPos(e);
+            const rect = piece.getBoundingClientRect();
+
+            // TÍNH OFFSET CHUẨN ĐỂ MẢNH GHÉP KHÔNG BỊ NHẢY KHI CHẠM VÀO
+            touchOffsetX = pos.x - rect.left;
+            touchOffsetY = pos.y - rect.top;
+
+            piece.style.position = 'fixed';
+            piece.style.left = `${pos.x - touchOffsetX}px`;
+            piece.style.top = `${pos.y - touchOffsetY}px`;
+            document.body.appendChild(piece);
+
+            // HIỆN MŨI TÊN CHỈ DẪN VỚI TỌA ĐỘ VIEWPORT CHUẨN
+            const targetIndex = piece.dataset.index;
+            activeTargetSlot = slots[targetIndex];
+
+            if (activeTargetSlot) {
+                updateGuideArrowPosition();
+                guideArrow.classList.remove('hidden');
+                activeTargetSlot.classList.add('slot-highlight');
+            }
+
+            if (e.type === 'touchstart') e.preventDefault();
+        }
+
+        function updateGuideArrowPosition() {
+            if (!activeTargetSlot) return;
+            const slotRect = activeTargetSlot.getBoundingClientRect();
+            const targetCenterX = slotRect.left + slotRect.width / 2;
+            const targetTopY = Math.max(10, slotRect.top - 4);
+
+            guideArrow.style.left = `${targetCenterX}px`;
+            guideArrow.style.top = `${targetTopY}px`;
+        }
+
+        function onMove(e) {
+            if (!isDragging) return;
+
+            const pos = getTouchPos(e);
+
+            // Cập nhật vị trí mảnh ghép di chuyển mượt theo ngón tay
+            piece.style.left = `${pos.x - touchOffsetX}px`;
+            piece.style.top = `${pos.y - touchOffsetY}px`;
+
+            updateGuideArrowPosition();
+
+            if (e.type === 'touchmove') e.preventDefault();
+        }
+
+        function onEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            piece.classList.remove('dragging');
+
+            guideArrow.classList.add('hidden');
+            if (activeTargetSlot) {
+                activeTargetSlot.classList.remove('slot-highlight');
+            }
+
+            const pieceRect = piece.getBoundingClientRect();
+            const pieceCenterX = pieceRect.left + pieceRect.width / 2;
+            const pieceCenterY = pieceRect.top + pieceRect.height / 2;
+
+            const targetIndex = piece.dataset.index;
+            const targetSlot = slots[targetIndex];
+            const slotRect = targetSlot.getBoundingClientRect();
+
+            const slotCenterX = slotRect.left + slotRect.width / 2;
+            const slotCenterY = slotRect.top + slotRect.height / 2;
+            const dist = Math.hypot(pieceCenterX - slotCenterX, pieceCenterY - slotCenterY);
+
+            // KHOẢNG CÁCH CHẤP NHẬN HÍT KHỚP TRÊN MOBILE
+            if (dist < 48) {
+                // THẢ ĐÚNG VÀO Ô!
+                piece.classList.add('snapped');
+                piece.style.position = 'absolute';
+                piece.style.left = `${-margin}px`;
+                piece.style.top = `${-margin}px`;
+                piece.style.transform = 'rotate(0deg)';
+                targetSlot.appendChild(piece);
+
+                playSound('success');
+                showPraiseBubble(PRAISE_TEXTS[Math.floor(Math.random() * PRAISE_TEXTS.length)], true);
+
+                piecesPlaced++;
+                document.getElementById('counterText').innerText = `Đã ghép: ${piecesPlaced} / ${TOTAL_PIECES} mảnh 💖`;
+
+                if (piecesPlaced === TOTAL_PIECES) {
+                    setTimeout(completePuzzle, 500);
+                }
+            } else {
+                // THẢ SAI / BẤM NHẦM
+                playSound('wrong');
+                showPraiseBubble("Huhu, nhầm chỗ rồi em ơi~ Kéo vào ô chỉ dẫn nè! 🥺", false);
+
+                const container = document.getElementById('piecesContainer');
+                piece.style.position = 'absolute';
+                piece.style.left = '8px';
+                piece.style.top = '8px';
+                piece.style.transform = `rotate(${piece.dataset.rotation}deg)`;
+                container.appendChild(piece);
+            }
+        }
+
+        // Mouse Listeners
+        piece.addEventListener('mousedown', onStart);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onEnd);
+
+        // Touch Listeners Mobile
+        piece.addEventListener('touchstart', onStart, { passive: false });
+        window.addEventListener('touchmove', onMove, { passive: false });
+        window.addEventListener('touchend', onEnd);
+    }
+
+    function showPraiseBubble(text, isSuccess) {
+        const bubble = document.getElementById('feedbackBubble');
+        bubble.textContent = text;
+        bubble.className = `praise-toast px-3.5 py-1 rounded-full text-xs font-extrabold shadow-md border ${
+            isSuccess
+                ? 'bg-emerald-500 text-white border-emerald-300'
+                : 'bg-rose-500 text-white border-rose-300'
+        }`;
+        bubble.classList.remove('hidden');
+
+        setTimeout(() => {
+            bubble.classList.add('hidden');
+        }, 2000);
+    }
+
+    function completePuzzle() {
+        confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 }
+        });
+
+        setTimeout(() => {
+            document.getElementById('stage2').classList.add('hidden');
+            document.getElementById('stage3').classList.remove('hidden');
+            document.getElementById('stage3').classList.add('flex');
+
+            document.getElementById('completedPhotoView').style.backgroundImage = `url('${COUPLE_IMAGE}')`;
+
+            startLoveTimer();
+            startTypewriter();
+        }, 1000);
+    }
+
+    /* ==========================================
+       6. MÀN 3: TÌNH YÊU & CÁC THẺ QUÀ TẶNG
+    ========================================== */
+    function startLoveTimer() {
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - LOVE_START_DATE;
+
+            if (diff < 0) return;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    }
+
+    const letterText = `Gửi em yêu của anh,\nNhân ngày 20/10, anh chúc công chúa nhỏ của anh luôn xinh đẹp, rạng rỡ và tràn ngập niềm vui. Cảm ơn em đã xuất hiện và làm cho mỗi ngày của anh trở nên thật ý nghĩa. Anh hứa sẽ luôn ở bên, lắng nghe và yêu thương em nhiều hơn mỗi ngày. Yêu em rất nhiều! 💖✨`;
+
+    function startTypewriter() {
+        const el = document.getElementById('typewriter');
+        el.textContent = '';
+        let i = 0;
+        function type() {
+            if (i < letterText.length) {
+                el.textContent += letterText.charAt(i);
+                i++;
+                setTimeout(type, 38);
+            }
+        }
+        type();
+    }
+
+    function claimVoucher(name) {
+        playSound('success');
+        confetti({
+            particleCount: 60,
+            spread: 60,
+            origin: { y: 0.8 }
+        });
+        alert(`🎉 Đã đổi thành công voucher [${name}]!\n\nAnh hứa sẽ thực hiện ngay quà tặng này cho em nhé! 🥰💖`);
+    }
+
+    function createPetals() {
+        const container = document.getElementById('petalContainer');
+        for (let i = 0; i < 14; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.width = `${Math.random() * 10 + 8}px`;
+            petal.style.height = `${Math.random() * 10 + 8}px`;
+            petal.style.animationDuration = `${Math.random() * 4 + 5}s`;
+            petal.style.animationDelay = `${Math.random() * 4}s`;
+            container.appendChild(petal);
+        }
+    }
+    createPetals();
+
+    let isPlayingMusic = false;
+    const musicBtn = document.getElementById('musicToggle');
+    musicBtn.addEventListener('click', () => {
+        isPlayingMusic = !isPlayingMusic;
+        musicBtn.textContent = isPlayingMusic ? '🔊' : '🎵';
+        if (isPlayingMusic) playSound('success');
+    });
+</script>
+</body>
+</html>
